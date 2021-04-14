@@ -28,10 +28,7 @@ var result = document.getElementById('result');
 var chyes = document.getElementById('chyes')
 var chno = document.getElementById('chno')
 
-var textlib = "Per Household, Per Year";
-
 function calculate (fm) {
-  //console.log(hse)
   if(chyes.checked){
       return (((fm * .10) - 7500) *.00452) ;
   } else {
@@ -53,19 +50,7 @@ button.addEventListener('click', function () {
 });
 
 
-/* function handleInteraction(evt) {
-  evt.preventDefault()
-  console.log('interacted')
-  var gr = calculate(input.value);
-  var gross = toFixed(gr, 2)
-  var gross = gross.concat(textlib);
-  result.textContent =  gross
-}
 
-
-button.addEventListener('touchstart', handleInteraction)
-button.addEventListener('keydown', handleInteraction)
-*/
 
 
 
