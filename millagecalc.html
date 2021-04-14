@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+</head>
+<body>
+<div>
+
+<form>Homestead Exemption:
+    <input type="radio" name="choice" id="chyes" value="yes"> Yes
+    <input type="radio" name="choice" id="chno" value="no"> No
+</form> 
+
+
+  Fair Market Home Value: $<input type="text" inputmode="numeric" id="fm-input" placeholder="">  <br>
+  <button id="calculate-button">Calculate</button>
+<br><br>
+  Your Cost Per Year For Library Millage: $<span id="result"></span>
+</div>
+
+<br>
+<button onclick="document.getElementById('fm-input').value = '';document.getElementById('chyes').checked = false;document.getElementById('chno').checked = false;result.innerHTML=''">Reset Form</button>
+
+<script>
+var input = document.getElementById('fm-input');
+var button = document.getElementById('calculate-button');
+var result = document.getElementById('result');
+var chyes = document.getElementById('chyes')
+var chno = document.getElementById('chno')
+
+var textlib = "Per Household, Per Year";
+
+function calculate (fm) {
+  //console.log(hse)
+  if(chyes.checked){
+      return (((fm * .10) - 7500) *.00452) ;
+  } else {
+      document.getElementById('chno').checked = true;
+      return ((fm * .10) *.00452) ;
+      }
+}
+
+function toFixed(num, fixed) {
+    var re = new RegExp('^-?\\d+(?:\.\\d{0,' + (fixed || -1) + '})?');
+    return num.toString().match(re)[0];
+}
+
+
+button.addEventListener('click', function () {
+ var gr = calculate(input.value);
+ var gross = toFixed(gr, 2)
+ result.textContent = gross; 
+});
+
+
+/* function handleInteraction(evt) {
+  evt.preventDefault()
+  console.log('interacted')
+  var gr = calculate(input.value);
+  var gross = toFixed(gr, 2)
+  var gross = gross.concat(textlib);
+  result.textContent =  gross
+}
+
+
+button.addEventListener('touchstart', handleInteraction)
+button.addEventListener('keydown', handleInteraction)
+*/
+
+
+
+</script>
+
+
+
