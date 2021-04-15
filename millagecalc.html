@@ -1,58 +1,64 @@
 <!DOCTYPE html>
 <html>
+<title>LPL Millage Calculator</title>
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
+
 <div>
 
+<!-- homestead exemption selection -->
 <form>Homestead Exemption:
     <input type="radio" name="choice" id="chyes" value="yes"> Yes
     <input type="radio" name="choice" id="chno" value="no"> No
 </form> 
 
+<!-- fair market value form -->
+  Fair Market Home Value: $<input type="text" inputmode="numeric" id="fm-input" placeholder="">
+<br>
+<!-- calculate button -->
+<button id="calculate-button">Calculate</button>
+<br>
+<br>
+<!-- result -->
+Your Cost Per Year For Library Millage: $<span id="result"></span>
 
-  Fair Market Home Value: $<input type="text" inputmode="numeric" id="fm-input" placeholder="">  <br>
-  <button id="calculate-button">Calculate</button>
-<br><br>
-  Your Cost Per Year For Library Millage: $<span id="result"></span>
 </div>
 
 <br>
+<!-- clear the page -->
 <button onclick="document.getElementById('fm-input').value = '';document.getElementById('chyes').checked = false;document.getElementById('chno').checked = false;result.innerHTML=''">Reset Form</button>
 
 <script>
+//get element variables
 var input = document.getElementById('fm-input');
 var button = document.getElementById('calculate-button');
 var result = document.getElementById('result');
 var chyes = document.getElementById('chyes')
 var chno = document.getElementById('chno')
 
+//function that calculates
 function calculate (fm) {
   if(chyes.checked){
-      return (((fm * .10) - 7500) *.00452) ;
+      return (((fm * .10) - 7500) *.00452) ; //homestead exemption
   } else {
       document.getElementById('chno').checked = true;
-      return ((fm * .10) *.00452) ;
+      return ((fm * .10) *.00452) ;  //no homestead exemption
       }
 }
-
+//set the resulting number to 2 decimal places
 function toFixed(num, fixed) {
     var re = new RegExp('^-?\\d+(?:\.\\d{0,' + (fixed || -1) + '})?');
     return num.toString().match(re)[0];
 }
 
-
+//listen for the calculate button and run calculations if pressed
 button.addEventListener('click', function () {
  var gr = calculate(input.value);
  var gross = toFixed(gr, 2)
  result.textContent = gross; 
 });
-
-
-
-
-
 
 </script>
 
