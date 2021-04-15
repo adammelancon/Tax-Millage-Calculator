@@ -38,45 +38,34 @@ var result = document.getElementById('result');
 var chyes = document.getElementById('chyes')
 var chno = document.getElementById('chno')
 
-input.addEventListener("keyup", handlereturnEvent);
+input.addEventListener("keyup", handlereturnEvent);    //listen for enter key to submit
 
+//run calculate if enter key is pressed
 function handlereturnEvent(e){
    if(e.keyCode === 13 //check for the correct key
    ){
       console.log("enter");
-      var gr = calculate(input.value); //do calculation
-      var gross = toFixed(gr, 2)   //set result to 2 decimal places
-      result.textContent = gross;  //display final result to page
+      var gr = calculate(input.value);                 //do calculation
+      var gross = toFixed(gr, 2)                       //set result to 2 decimal places
+      result.textContent = gross;                      //display final result to page
    }
 }
-
-function handlereturnEvent(e){
-   if(e.keyCode === 13 //check for the correct key
-   ){
-      console.log("enter");
-      var gr = calculate(input.value); //do calculation
-      var gross = toFixed(gr, 2)   //set result to 2 decimal places
-      result.textContent = gross;  //display final result to page
-   }
-}
-
-
 
 //listen for the calculate button and run calculations if pressed
 button.addEventListener('click', function () {
- var gr = calculate(input.value); //do calculation
- var gross = toFixed(gr, 2)   //set result to 2 decimal places
- result.textContent = gross;  //display final result to page
+ var gr = calculate(input.value);                      //do calculation
+ var gross = toFixed(gr, 2)                            //set result to 2 decimal places
+ result.textContent = gross;                           //display final result to page
 });
 
 
 //function that calculates
 function calculate (fm) {
-  if(chyes.checked){
-      return (((fm * .10) - 7500) *.00452) ; //homestead exemption
+  if(chyes.checked){                                  //Homestead YES
+      return (((fm * .10) - 7500) *.00452) ;
   } else {
-      document.getElementById('chno').checked = true;
-      return ((fm * .10) *.00452) ;  //no homestead exemption
+      document.getElementById('chno').checked = true; //Homestead NO
+      return ((fm * .10) *.00452) ;
       }
 }
 //set the resulting number to 2 decimal places
